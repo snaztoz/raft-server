@@ -1,3 +1,5 @@
+const log = require('./utils/logger')
+
 /**
  * App utama (HTTP server).
  */
@@ -8,7 +10,7 @@ class App {
 
   runAt(port) {
     this.app.listen(port, () => {
-      console.log(`[INFO] HTTP Server is running at port ${port}`)
+      log('INFO', `Application is running at port ${port}`)
     })
   }
 }
