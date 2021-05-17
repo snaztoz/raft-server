@@ -1,3 +1,4 @@
 module.exports = {
-  Participant: require('./Participant')
+  User: require('./User'),
+  Message: require('./Message'),
 }
