@@ -1,5 +1,11 @@
 require('dotenv').config()
 
-require('./bootstrap')
+const bootstrap = require('./bootstrap')
 
-require('./internal').app.runAt(process.env.SERVER_PORT)
+bootstrap()
+  .then(() => {
+    require('./internal').app.runAt(process.env.SERVER_PORT)
+  })
+  .catch(() => {
+    console.log('[ERR] Failed to start the server. Exit...')
+  })
