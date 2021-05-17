@@ -34,5 +34,15 @@ module.exports = async function() {
   }
 
 
+  // bootstrapping models
+  const models = require('../models')
+  for (const modelName in models) {
+    internal.orm
+      .get()
+      .define(modelName, models[modelName])
+  }
+
+  await internal.orm.get().sync()
+
   console.log('[INFO] Application is ready to run')
 }
