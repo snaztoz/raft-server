@@ -11,8 +11,19 @@ module.exports =  function(sequelize) {
   //
 
   const User = sequelize.models.User
+  const Chatroom = sequelize.models.Chatroom
   const Message = sequelize.models.Message
+
+  User.belongsToMany(Chatroom, {
+    through: 'UserChatroom',
+  })
+  Chatroom.belongsToMany(User, {
+    through: 'UserChatroom',
+  })
 
   User.hasMany(Message, { foreignKey: 'email' })
   Message.belongsTo(User)
+
+  Chatroom.hasMany(Message, { foreignKey: 'id' })
+  Message.belongsTo(Chatroom)
 }
