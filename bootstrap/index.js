@@ -8,4 +8,28 @@ const expressApp = require('express')()
 const app = require('http').createServer(expressApp)
 internal.app.setApp(app)
 
+
+// bootstrapping orm
+const { Sequelize } = require('sequelize')
+internal.orm
+  .set(
+    new Sequelize(
+      process.env.DB_NAME,
+      process.env.DB_USERNAME,
+      process.env.DB_PASSWORD,
+      {
+        host: process.env.DB_HOST,
+        dialect: process.env.DB_DIALECT
+      }
+    )
+  )
+
+internal.orm
+  .get()
+  .authenticate()
+  .catch(err => {
+    console.log(`[ERR] Failed at connecting to database. code: ${err}`)
+  })
+
+
 console.log('[INFO] Application is ready to run')

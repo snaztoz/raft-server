@@ -2,5 +2,5 @@
 // sebelum mulai digunakan.
 module.exports = {
   app: require('./app'),
-  databaseConnection: null
+  orm: require('./orm')
 }
