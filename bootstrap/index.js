@@ -1,17 +1,20 @@
 module.exports = async function() {
   // Instance dari server, connection ke database, dll
   const internal = require('../internal')
+  const log = require('../internal/utils/logger')
 
-  console.log('[INFO] Bootstrapping application')
-
+  log('INFO', 'Bootstrapping application')
 
   // bootstrapping server
+  log('INFO', 'Setting up the server')
   const expressApp = require('express')()
   const app = require('http').createServer(expressApp)
   internal.app.setApp(app)
+  log('SUCCESS', 'Server is ready')
 
 
   // bootstrapping orm
+  log('INFO', 'Connecting to database')
   const { Sequelize } = require('sequelize')
   internal.orm
     .set(
@@ -28,13 +31,15 @@ module.exports = async function() {
   
   try {
     await internal.orm.get().authenticate()
+    log('SUCCESS', 'Database is connected')
   } catch (err) {
-    console.log(`[ERR] Failed at connecting to database. code: ${err}`)
+    log('ERR', `Failed at connecting to database. code: ${err}`)
     throw err
   }
 
 
   // bootstrapping models
+  log('INFO', 'Synchronizing models')
   const models = require('../models')
   for (const modelName in models) {
     internal.orm
@@ -43,6 +48,8 @@ module.exports = async function() {
   }
 
   await internal.orm.get().sync()
+  log('SUCCESS', 'Models are ready')
 
-  console.log('[INFO] Application is ready to run')
+
+  log('SUCCESS', 'Application is ready to run!')
 }
