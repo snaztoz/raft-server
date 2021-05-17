@@ -46,6 +46,8 @@ module.exports = async function() {
       .get()
       .define(modelName, models[modelName])
   }
+  // memasang relationship antar tabel
+  require('../models/associations')(internal.orm.get())
 
   await internal.orm.get().sync()
   log('SUCCESS', 'Models are ready')
