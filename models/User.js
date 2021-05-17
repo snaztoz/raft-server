@@ -5,5 +5,11 @@ module.exports = {
     type: DataTypes.STRING,
     allowNull: false,
     primaryKey: true,
+  },
+
+  username: {
+    type: DataTypes.STRING,
+    allowNull: false,
+    unique: true,
   }
 }
