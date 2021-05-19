@@ -10,8 +10,8 @@ module.exports = {
   //    const { DataTypes } = require('sequelize')
   //
   //    Foo: {
-  //      type: DataTypes.INTEGER
-  //      ...options...
+  //      colA: { ...options... },
+  //      colB: { ...options... }
   //    }
   //
 

@@ -6,7 +6,7 @@ module.exports =  function(sequelize) {
   //    const Foo = sequelize.models.Foo
   //    const Bar = sequelize.models.Bar
   //
-  //    Foo.hasMany(Bar, { options })
+  //    Foo.hasMany(Bar, { ...options... })
   //    Bar.belongsTo(Foo)
   //
 
