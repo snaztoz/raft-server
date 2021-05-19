@@ -5,18 +5,7 @@ module.exports = async function() {
 
   log('INFO', 'Bootstrapping application')
 
-  /*
-   * Bootstrapping server
-   */
-  await (async function() {
-    log('INFO', 'Setting up the server')
-
-    const expressApp = require('express')()
-    const app = require('http').createServer(expressApp)
-    internal.app.setApp(app)
-
-    log('SUCCESS', 'Server is ready')
-  })()
+  await require('./app').bootstrap()
 
   /*
    * Bootstrapping ORM
